@@ -1,0 +1,17 @@
+[inputs]
+
+h0: 0
+h1: 2
+h2: 3
+
+[outputs]
+hsyn: 0
+vsyn: 1
+hbln: 2
+
+[equations]
+hcnt: (h2 << 2) | (h1 << 1) | h0
+hbln: 1 if hcnt > 4 else 0
+hsyn: ~(h0 & h1 & h2)
+vsyn: ~(h1 ^ h2)
+
