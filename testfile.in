@@ -1,3 +1,6 @@
+[defaults]
+outputs: 0
+
 [inputs]
 
 h0: 0
@@ -7,7 +10,7 @@ h2: 3
 [outputs]
 hsyn: 0
 vsyn: 1
-hbln: 2
+hbln: 3
 
 [equations]
 hcnt: (h2 << 2) | (h1 << 1) | h0
