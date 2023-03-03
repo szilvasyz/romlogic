@@ -45,7 +45,7 @@ print(evalinput)
 print(evalequation)
 print(evaloutput)
 
-for symaddr in range(1 << maxinput):
+for symaddr in range(1 << (maxinput+1)):
     for i in range(maxinput + 1):
         exec("a{} = (symaddr >> i) & 1".format(i))
 
@@ -56,6 +56,11 @@ for symaddr in range(1 << maxinput):
     exec(evalequation)
     exec(evaloutput)
 
-    print(locals())
+    symdata = 0
+    for i in range(maxoutput + 1):
+        symdata |= eval("d{}".format(i)) << i
+
+    print("{:0{wa}b}: {:0{wd}b}".format(symaddr, symdata, wa=maxinput+1, wd=maxoutput+1))
+#    print(locals())
 
 
