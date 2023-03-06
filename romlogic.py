@@ -101,7 +101,8 @@ for symaddr in range(1 << (maxinput+1)):
 
     symout = []
     for symitem in config.items('outputs'):
-        symout.append(eval(symitem[0]))
+        symout.append(eval("d{}".format(symitem[1])))
+#        symout.append(eval(symitem[0]))
     symoutarr[symaddr] = symout
 
     if args.debug:
@@ -124,7 +125,7 @@ if args.list:
     listfilename = os.path.splitext(args.InFileName)[0] + ".lst"
     lst = ""
     for item in range(1 << (maxinput+1)):
-        lst += "{:0{wa}b}: {:0{wd}b}\n".format(symaddr, symdata, wa=maxinput + 1, wd=maxoutput + 1)
+        lst += "{:0{wa}b}: {:0{wd}b}\n".format(item, symarray[item], wa=maxinput + 1, wd=maxoutput + 1)
     os.write(os.open(listfilename, os.O_CREAT | os.O_TRUNC | os.O_RDWR), bytes(lst, "UTF8"))
     print("List file written.")
 
